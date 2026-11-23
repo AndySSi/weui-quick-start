@@ -5,11 +5,32 @@
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-  color: var(--weui-FG-0);
-  background: var(--weui-BG-0);
 }
 body {
   margin: 0;
+  min-height: 100vh;
+  color: var(--weui-FG-0);
+  background: var(--weui-BG-0);
+}
+.theme-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  color: var(--weui-FG-1);
+  font-size: 14px;
+}
+.theme-control select {
+  padding: 6px 10px;
+  border: 1px solid var(--weui-FG-3);
+  border-radius: 8px;
+  color: var(--weui-FG-0);
+  background: var(--weui-BG-2);
+  font: inherit;
+}
+.theme-control select:focus-visible {
+  outline: 2px solid var(--weui-BRAND);
+  outline-offset: 2px;
 }
 .page {
   max-width: 640px;

@@ -50,6 +50,12 @@ weui.js 会在 body 下添加弹层，自定义弹层样式应放在全局 CSS �
 
 默认不加入路由、状态库、请求库或微信 JS-SDK，业务需要时再引入。当前表单仅演示，无后端；通知开关不会申请系统通知权限。WeUI 外观不等同于微信授权、支付等能力，这些能力需独立接入 JS-SDK 与服务端。本项目面向浏览器，weui.js 依赖 DOM，不适用于微信小程序。
 
+## 深色模式
+
+页面顶部「外观」支持跟随系统、浅色、深色，默认跟随系统。偏好保存在 localStorage（weui-theme），刷新后恢复；系统主题变化和同源标签页设置变化会同步。存储不可用时切换仍在当前页面生效。
+
+`src/lib/theme.ts` 通过官方 `body[data-weui-theme]` 控制 WeUI 与 body 下的 weui.js 弹层，并同步原生控件 color-scheme 和浏览器 theme-color。自定义颜色应使用 `var(--weui-BG-0)`、`var(--weui-FG-0)` 等变量，在 body 及其后代使用（官方变量不定义在 html 上）。业务中可调用 `setTheme('dark' | 'light' | 'system')`。
+
 ## 依赖与升级
 
 WeUI、weui.js、Vue、Vite 等采用创建时 npm latest 稳定版；TypeScript 使用 vue-tsc 支持的最新 6.0.3（其当前依赖要求 <7，最新 7.0.2 实测无法运行类型检查）。所有版本固定，pnpm-lock.yaml 保证安装可复现。更新前阅读 [版本与用法指南](docs/weui-guide.md)。

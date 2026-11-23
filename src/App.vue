@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { ui, weui } from "./lib/ui";
+import { themePreference, setTheme } from "./lib/theme";
+import type { ThemePreference } from "./lib/theme";
+
+function changeTheme(event: Event) {
+  setTheme((event.target as HTMLSelectElement).value as ThemePreference);
+}
 
 const name = ref("");
 const notice = ref(true);
@@ -65,6 +71,14 @@ async function submit() {
       <p class="eyebrow">WEUI · VUE 3 · TYPESCRIPT</p>
       <h1>从这里开始</h1>
       <p class="intro">熟悉的微信体验，轻量的 Web 开发起点。</p>
+      <div class="theme-control">
+        <label for="theme-preference">外观</label>
+        <select id="theme-preference" :value="themePreference" @change="changeTheme">
+          <option value="system">跟随系统</option>
+          <option value="light">浅色模式</option>
+          <option value="dark">深色模式</option>
+        </select>
+      </div>
     </header>
 
     <section class="weui-panel weui-panel_access" aria-labelledby="intro-title">
@@ -171,7 +185,7 @@ async function submit() {
     </section>
     <footer class="weui-footer page-footer">
       <p class="weui-footer__text">WeUI 2.6.26 · weui.js 1.2.28</p>
-      <p class="weui-footer__text">为移动 Web 而准备</p>
+      <p class="weui-footer__text">@YiDu Design for Web</p>
     </footer>
   </main>
 </template>
