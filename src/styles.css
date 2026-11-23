@@ -1,0 +1,65 @@
+:root {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: var(--weui-FG-0);
+  background: var(--weui-BG-0);
+}
+body {
+  margin: 0;
+}
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: env(safe-area-inset-top) 0 max(24px, env(safe-area-inset-bottom));
+}
+.page-header {
+  padding: 44px 24px 32px;
+}
+.eyebrow {
+  color: var(--weui-BRAND);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+.intro,
+.demo-note {
+  color: var(--weui-FG-1);
+  font-size: 14px;
+}
+.weui-panel__hd,
+.weui-cells__title {
+  font-weight: 400;
+}
+.cell-button {
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.cell-button:focus-visible {
+  outline: 2px solid var(--weui-BRAND);
+  outline-offset: -3px;
+}
+.demo-note {
+  text-align: center;
+  margin: 16px 20px 0;
+  font-size: 12px;
+}
+.page-footer {
+  margin-top: 36px;
+}
