@@ -3,5 +3,8 @@ import 'weui/dist/style/weui.css'
 import './styles.css'
 import App from './App.vue'
 import './lib/theme'
+import { router } from './router'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(router)
+router.isReady().then(() => app.mount('#app'))

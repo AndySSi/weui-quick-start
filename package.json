@@ -12,16 +12,21 @@
     "build": "pnpm type-check && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "type-check": "vue-tsc --noEmit",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "test": "node --test scripts/tests/*.test.mjs",
     "create": "node scripts/create.mjs",
     "check:updates": "pnpm outdated"
   },
   "dependencies": {
     "vue": "3.5.46",
+    "vue-router": "5.5.1",
     "weui": "2.6.26",
     "weui.js": "1.2.28"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "6.0.11",
+    "prettier": "3.10.1",
     "typescript": "6.0.3",
     "vite": "8.3.8",
     "vue-tsc": "3.3.14"
