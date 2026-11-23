@@ -32,30 +32,18 @@ body {
   outline: 2px solid var(--weui-BRAND);
   outline-offset: 2px;
 }
+.theme-control.settings-theme {
+  margin-top: 0;
+}
 .page {
   max-width: 640px;
   margin: 0 auto;
   padding: env(safe-area-inset-top) 0 max(24px, env(safe-area-inset-bottom));
 }
-.page-header {
-  padding: 44px 24px 32px;
-}
-.eyebrow {
-  color: var(--weui-BRAND);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
 h1 {
   font-size: 30px;
   font-weight: 600;
   margin: 0 0 12px;
-}
-.intro,
-.demo-note {
-  color: var(--weui-FG-1);
-  font-size: 14px;
 }
 .weui-panel__hd,
 .weui-cells__title {
@@ -75,19 +63,6 @@ h1 {
 .cell-button:focus-visible {
   outline: 2px solid var(--weui-BRAND);
   outline-offset: -3px;
-}
-.demo-note {
-  text-align: center;
-  margin: 16px 20px 0;
-  font-size: 12px;
-}
-.page-footer {
-  margin-top: 36px;
-}
-.app-shell {
-  max-width: 640px;
-  margin: 0 auto;
-  min-height: 100vh;
 }
 .app-shell .page {
   padding-top: 0;
@@ -132,28 +107,6 @@ h1 {
   background: transparent;
   font-family: inherit;
   cursor: pointer;
-}
-.tab-icon-wrap {
-  position: relative;
-  display: inline-block;
-}
-.tab-badge {
-  position: absolute;
-  top: -3px;
-  right: -12px;
-}
-.tab-content {
-  min-height: 180px;
-}
-.example-description {
-  margin-top: 12px;
-  color: var(--weui-FG-1);
-}
-.page-actions {
-  padding: 32px 24px;
-}
-.settings-theme {
-  margin-top: 0;
 }
 .app-tabbar a:focus-visible,
 .tab-button:focus-visible,

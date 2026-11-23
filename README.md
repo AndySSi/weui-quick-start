@@ -46,11 +46,14 @@ pnpm dev
 - src/components/TabIcon.vue：项目自定义的内联 SVG 导航图标，不依赖第三方图标库。
 - src/services/projects.ts：本地项目示例数据。
 - src/main.ts：全局加载官方 WeUI CSS，再加载项目样式。
+- uno.config.ts：UnoCSS 原子类、WeUI 主题颜色与公共 shortcuts。
+- src/styles.scss：全局基础样式、安全区域与复杂公共样式。
 - src/lib/ui.ts：文本转义、常用反馈与带 finally 清理的 loading。
 - src/types/weui.d.ts：示例所用 weui.js API 的局部类型定义，非完整官方类型。
 - scripts/create.mjs：复制模板。
 - docs/weui-guide.md：版本研究与升级流程。
 - docs/routing.md：页面组织、路由与 Tabbar 开发指南。
+- docs/styling.md：UnoCSS 与 SCSS 样式开发约定。
 - scripts/tests/routes.test.mjs：路由解析回归测试。
 
 WeUI 提供 CSS 与 DOM 结构，Vue 管理表单状态，weui.js 提供弹窗和选择器等交互。组件结构请以当前版本官方示例为准，不要只复制旧博客中的 class。对同一个表单或 tab 避免同时使用 Vue 和 weui.js 初始化 DOM 事件，以免重复监听。
@@ -66,6 +69,14 @@ weui.js 会在 body 下添加弹层，自定义弹层样式应放在全局 CSS �
 首页和设置页均可进入 Tabbar 示例。应用底栏用 RouterLink 切换路由；独立示例用 Vue 状态切换消息、通讯录、我三个内容面板，展示图标、选中态、未读徽标和键盘导航。示例页隐藏应用底栏，避免双重导航。
 
 详细开发约定、参数传递、返回与部署说明见 [多页面开发指南](docs/routing.md)。
+
+## 样式方案
+
+日常布局、间距、颜色优先使用 UnoCSS 原子类，重复组合放入 uno.config.ts 的 shortcuts；复杂组件样式使用 `<style scoped lang="scss">`，全局样式放在 src/styles.scss。UnoCSS 主题颜色引用 WeUI CSS 变量，自动适配现有深色模式。不额外引入 reset，保留 WeUI 组件的基础样式。
+
+当前 Tabbar 示例已展示原子类和 scoped SCSS 混合使用。配置、动态类名约定及例子见 [样式开发指南](docs/styling.md)。
+
+VS Code 安装并启用推荐的 UnoCSS 扩展后，匹配的原子类及 shortcuts 下方会显示虚线，悬停可查看 CSS；WeUI 类和普通 SCSS 类不显示该标识。新项目没有提示时，执行 `UnoCSS: Reload UnoCSS` 或 `Developer: Reload Window` 重新加载配置。
 
 ## 代码格式
 

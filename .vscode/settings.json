@@ -3,7 +3,14 @@
   "editor.formatOnSave": true,
   "prettier.requireConfig": true,
   "files.eol": "\n",
+  "unocss.disable": false,
+  "unocss.underline": true,
   "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": {
+      "other": "on",
+      "comments": "off",
+      "strings": "on"
+    }
   }
 }

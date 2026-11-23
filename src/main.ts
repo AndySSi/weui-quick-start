@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import 'weui/dist/style/weui.css'
-import './styles.css'
+import 'virtual:uno.css'
+import './styles.scss'
 import App from './App.vue'
 import './lib/theme'
 import { router } from './router'

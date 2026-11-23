@@ -37,7 +37,7 @@ ui.ts 集中追踪示例创建的弹层，在成功导航后调用 hide 清理�
 - MainLayout：WeUI 样式 + RouterLink，切换真实 URL，详情页仍高亮项目栏目。
 - TabbarPage：WeUI 样式 + Vue ref，切换当前页内容，不修改 URL；使用 tablist/tab/tabpanel 语义，支持左右方向键、Home、End、选中态和未读徽标。
 
-不对同一导航再调用 weui.tab()，避免与 Vue 重复操作 DOM。Tabbar 的固定定位、安全区域和图标样式放在全局 styles.css，颜色继承 WeUI 主题变量。
+不对同一导航再调用 weui.tab()，避免与 Vue 重复操作 DOM。Tabbar 的固定定位、安全区域和共用图标样式放在全局 styles.scss，颜色继承 WeUI 主题变量。基础布局使用 UnoCSS，独立示例的徽标定位使用 scoped SCSS，具体见 [样式开发约定](styling.md)。
 
 图标由 `src/components/TabIcon.vue` 中的内联 SVG 绘制，包含 home、projects、settings 三种，自定义图标与 WeUI 提供的布局样式分别维护。独立示例复用这些图形；业务中可在该组件中替换图形或接入自己的图标来源。SVG 使用 currentColor 继承选中态和深色主题颜色，无需为每种主题维护图片。
 

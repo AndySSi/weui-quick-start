@@ -16,6 +16,7 @@ for (const entry of [
   'package.json',
   'pnpm-lock.yaml',
   'vite.config.ts',
+  'uno.config.ts',
   'tsconfig.json',
   '.gitignore',
   '.prettierrc.json',

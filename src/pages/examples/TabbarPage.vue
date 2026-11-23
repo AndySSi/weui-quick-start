@@ -50,7 +50,7 @@ function moveTab(event: KeyboardEvent, index: number) {
       v-show="selected === tab.id"
       :id="`panel-${tab.id}`"
       :key="tab.id"
-      class="weui-panel tab-content"
+      class="weui-panel min-h-[180px]"
       role="tabpanel"
       :aria-labelledby="`tab-${tab.id}`"
       tabindex="0"
@@ -58,7 +58,7 @@ function moveTab(event: KeyboardEvent, index: number) {
       <div class="weui-panel__bd">
         <div class="weui-media-box weui-media-box_text">
           <h2 class="weui-media-box__title">{{ tab.title }}</h2>
-          <p class="example-description">{{ tab.text }}</p>
+          <p class="mt-[12px] text-weui-muted">{{ tab.text }}</p>
         </div>
       </div>
     </section>
@@ -102,3 +102,17 @@ function moveTab(event: KeyboardEvent, index: number) {
     </div>
   </main>
 </template>
+
+<style scoped lang="scss">
+// 组件专属的徽标定位用 SCSS 嵌套；简单间距与颜色在模板中用 UnoCSS。
+.tab-icon-wrap {
+  position: relative;
+  display: inline-block;
+
+  .tab-badge {
+    position: absolute;
+    top: -3px;
+    right: -12px;
+  }
+}
+</style>
