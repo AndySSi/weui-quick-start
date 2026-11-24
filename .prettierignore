@@ -5,3 +5,5 @@ pnpm-lock.yaml
 note.md
 .env*
 *.log
+*.vsix
+tooling/weui-vscode/

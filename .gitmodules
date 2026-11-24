@@ -1,0 +1,3 @@
+[submodule "tooling/weui-vscode"]
+	path = tooling/weui-vscode
+	url = https://github.com/AndySSi/weui-style-nav.git

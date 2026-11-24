@@ -24,7 +24,9 @@ pnpm install
 pnpm dev
 ```
 
-保留源码、配置和锁文件；不复制依赖、构建产物、Git 历史或本地环境文件。
+保留源码、配置、环境默认值和锁文件；不复制依赖、构建产物、Git 历史或 `.env.*.local` 等本地覆盖文件。
+
+复制前请初始化下方扩展子模块。新项目获得扩展源码快照，不包含子模块的 `.git` 指针；无需初始化 Git 即可使用模板。
 
 ## 目录与开发约定
 
@@ -54,11 +56,15 @@ weui-simple-pages/
 ├── scripts/
 │   ├── create.mjs                 # 复制模板
 │   └── tests/routes.test.mjs      # 路由测试
+├── tooling/weui-vscode/           # Git 子模块：WeUI 样式导航扩展
+├── .gitmodules                    # 子模块远程地址
 ├── .vscode/                       # 扩展推荐与编辑器设置
 ├── uno.config.ts                  # 原子类、主题、shortcuts
 ├── vite.config.ts
 ├── tsconfig.json
 ├── .prettierrc.json               # 配合 .editorconfig 统一格式
+├── .env.development               # 开发环境默认值
+├── .env.production                # 生产环境默认值
 ├── index.html
 ├── package.json
 └── pnpm-lock.yaml
@@ -118,6 +124,21 @@ VS Code 安装推荐的 **UnoCSS** 扩展：有虚线的类表示已匹配原子
 
 更多示例见 [样式指南](docs/styling.md)。
 
+### 添加 WeUI 编辑器插件
+
+插件通过 [Git 子模块](https://github.com/AndySSi/weui-style-nav) 引入，固定在脚手架记录的提交版本。
+
+```powershell
+git submodule update --init --recursive
+pnpm --dir tooling/weui-vscode install --frozen-lockfile
+pnpm weui:editor:package
+pnpm weui:editor:install
+```
+
+新克隆也可使用 `git clone --recurse-submodules <脚手架仓库地址>`。模板复制得到的源码快照跳过第一步。
+
+安装后重载 VS Code：WeUI 类显示实线，`Ctrl+点击` / `F12` 跳到 CSS；UnoCSS 保留虚线。详见 [编辑器配置](docs/styling.md#weui-样式装饰与跳转)。
+
 ## 常用命令
 
 | 命令                | 用途                                    |
@@ -129,6 +150,22 @@ VS Code 安装推荐的 **UnoCSS** 扩展：有虚线的类表示已匹配原子
 | `pnpm preview`      | 预览构建产物                            |
 
 提交前执行：`pnpm format:check` → `pnpm test` → `pnpm build`。视觉效果和微信兼容性需真机验收。
+
+## 环境配置
+
+| 命令         | 自动加载           | 应用标题              |
+| ------------ | ------------------ | --------------------- |
+| `pnpm dev`   | `.env.development` | WeUI 快速起步（开发） |
+| `pnpm build` | `.env.production`  | WeUI 快速起步         |
+
+```ts
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL // 默认 /api，预留给后端请求
+const mode = import.meta.env.MODE // development / production
+```
+
+标题已用于 HTML 与路由页面；API 地址仅预留，尚未接入请求或开发代理。类型声明位于 `src/types/env.d.ts`。
+
+本地覆盖使用 `.env.development.local` 或 `.env.production.local`（Git 已忽略）。修改配置后重启开发服务；生产环境需重新构建，`pnpm preview` 只预览已有产物。`VITE_` 变量会进入浏览器代码，勿存放密钥。
 
 ## 使用前了解
 

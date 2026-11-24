@@ -5,6 +5,8 @@
   "files.eol": "\n",
   "unocss.disable": false,
   "unocss.underline": true,
+  "weuiStyles.enabled": true,
+  "weuiStyles.decorations": true,
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.quickSuggestions": {

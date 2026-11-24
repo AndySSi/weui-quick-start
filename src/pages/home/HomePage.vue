@@ -225,7 +225,11 @@ async function submit() {
     </section>
     <footer class="weui-footer page-footer">
       <p class="weui-footer__text">WeUI 2.6.26 · weui.js 1.2.28</p>
-      <p class="weui-footer__text">@YiDu Design for Web</p>
+      <img
+        class="mx-auto mt-[8px] block h-[20px] w-auto"
+        src="https://weui.io/images/icon_footer_link.png"
+        alt="WeUI Logo"
+      />
     </footer>
   </main>
 </template>

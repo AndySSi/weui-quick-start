@@ -12,5 +12,9 @@ export const router = createRouter({
 router.afterEach((to, _from, failure) => {
   if (failure) return
   closeOverlays()
-  document.title = `${String(to.meta.title ?? '首页')} · WeUI 快速起步`
+  document.title = `${String(to.meta.title ?? '首页')} · ${import.meta.env.VITE_APP_NAME}`
+})
+
+router.beforeEach((guard) => {
+  console.log('[router.beforeEach] =', guard)
 })

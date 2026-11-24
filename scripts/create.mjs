@@ -1,15 +1,22 @@
-import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
+import { access, cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const source = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const destination = process.argv[2] && resolve(process.cwd(), process.argv[2])
 if (!destination) throw new Error('用法：pnpm create <新项目目录>')
+// 复用模板时导出扩展源码快照，不能带走指向原仓库的子模块 .git 文件。
+try {
+  await access(resolve(source, 'tooling/weui-vscode/package.json'))
+} catch {
+  throw new Error('请先执行 git submodule update --init --recursive，再复制模板。')
+}
 // 非递归创建：目标已存在（即使为空）也拒绝覆盖。
 await mkdir(destination)
 for (const entry of [
   'src',
   'scripts',
+  'tooling',
   'docs',
   '.vscode',
   'index.html',
@@ -19,6 +26,8 @@ for (const entry of [
   'uno.config.ts',
   'tsconfig.json',
   '.gitignore',
+  '.env.development',
+  '.env.production',
   '.prettierrc.json',
   '.prettierignore',
   '.editorconfig',
@@ -28,6 +37,7 @@ for (const entry of [
     recursive: true,
     force: false,
     errorOnExist: true,
+    filter: (file) => !['.git', 'node_modules'].includes(basename(file)) && !file.endsWith('.vsix'),
   })
 }
 const packagePath = resolve(destination, 'package.json')
